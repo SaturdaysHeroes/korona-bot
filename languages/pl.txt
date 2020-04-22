@@ -1,0 +1,15 @@
+{
+  "Report_Command": "raport",
+  "Report_NoCountry": "Proszę podać kod państwa, z którego otrzymać zebrać informacje.",
+  "Report_Deaths": "Zgony",
+  "Report_NotFound": "Nie znaleziono państwa z podanym kodem/nazwą, proszę ponowić prośbę...",
+  "Help_ReportDesc": "Wysyła raport dotyczący podanego państwa, w tym liczbę nowych przypadków, zgonów oraz wyleczeń.\n\nPrzykład: `>raport PL`.",
+  "Help_Description": "Cześć, poniżej znajduje się lista wszystkich komend.",
+  "Report_Header": "Raport - %s (%s)",
+  "Help_ReportName": "raport [państwo]",
+  "Help_Header": "KoronaBot - Help",
+  "Report_Error": "Zbieranie informacji nie powiodło się, proszę ponowić prośbę...",
+  "Report_Cured": "Wyleczenia",
+  "Report_Description": "Raport dot. %s: aktywne przypadki, zgony, wyleczenia.",
+  "Report_ActiveCases": "Aktywne Przypadki"
+}

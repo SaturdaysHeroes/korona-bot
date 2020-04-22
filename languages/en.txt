@@ -1,0 +1,15 @@
+{
+  "Report_Command": "report",
+  "Report_NoCountry": "Please provide the country from which you'd like to retrieve a report.",
+  "Report_Deaths": "Deaths",
+  "Report_NotFound": "Couldnt't find a country corresponding to the provided name/code, please try again...",
+  "Help_ReportDesc": "Sends a daily report featuring active cases, cured cases and deaths.\n\nExample: `>report US`.",
+  "Help_Description": "Hello, you can find the full list of commands below.",
+  "Report_Header": "Report - %s (%s)",
+  "Help_ReportName": "report [country]",
+  "Help_Header": "KoronaBot - Help",
+  "Report_Error": "Retrieving information has failed, please try again...",
+  "Report_Cured": "Cured",
+  "Report_Description": "Report re. %s: active cases, cured, deaths.",
+  "Report_ActiveCases": "Active Cases"
+}
