@@ -4,6 +4,10 @@ In light of the SARS-CoV-2 pandemic I decided to create a discord bot to fetch t
 ### Requirements
 KoronaBot uses the [Discordia](https://github.com/SinisterRectus/Discordia) package for [Luvit](https://luvit.io) to connect to the Discord API, therefore this will be required. Additionally, you will have to register an application on the [Discord Developer Portal](https://discordapp.com/developers/applications/) and obtain a bot token. In the future access to the Twitter API may also be required, not sure yet. 
 
+### Media
+![Usage](https://u.saturdaysheroes.xyz/img/VZUPE1oQnN.png)
+![Usage](https://u.saturdaysheroes.xyz/img/pPJmhf8hGk.png)
+
 ### Credits
 - SaturdaysHeroes (Code) 
 - [Kyle Redelinghuys](https://covid19api.com/) (COVID-19 API) 
