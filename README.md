@@ -6,7 +6,7 @@ KoronaBot uses the [Discordia](https://github.com/SinisterRectus/Discordia) pack
 
 ### Media
 ![Usage](https://u.saturdaysheroes.xyz/img/VZUPE1oQnN.png)
-![Usage](https://u.saturdaysheroes.xyz/img/pPJmhf8hGk.png)
+![Usage](https://u.saturdaysheroes.xyz/img/pKXXV7yRAY.png)
 
 ### Credits
 - SaturdaysHeroes (Code) 
