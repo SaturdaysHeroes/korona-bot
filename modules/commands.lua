@@ -9,14 +9,14 @@ return function(client)
             message:reply { 
                 embed = {
                     author = {
-                        name = "KoronaBot - Help",
+                        name = lang.GetPhrase("Help_Header", config.language),
                         icon_url = "https://i.imgur.com/Wtzvol9.png"
                     },
-                    description = "Cześć, poniżej znajduje się lista wszystkich komend.",
+                    description = lang.GetPhrase("Help_Description", config.language),
                     fields = {
                         {
-                            name = config.prefix.."raport [państwo]",
-                            value = "Wysyła raport dotyczący podanego państwa, w tym liczbę nowych przypadków, zgonów oraz wyleczeń.\n\nPrzykład: `>raport PL`.",
+                            name = config.prefix..lang.GetPhrase("Help_ReportName", config.language), 
+                            value = lang.GetPhrase("Help_ReportDesc", config.language),
                             inline = false
                         }, 
                     },
@@ -63,39 +63,38 @@ return function(client)
             end)
         end
 
-        if string.lower(tblArgs[1]) == config.prefix.."raport" then 
-            local strInput = string.lower(tblArgs[2])
-
-            if tblArgs[2] == nil then message:reply("Proszę podać kod państwa, z którego otrzymać zebrać informacje.") return end
+        if string.lower(tblArgs[1]) == config.prefix..lang.GetPhrase("Report_Command", config.language) then 
+            if tblArgs[2] == nil then message:reply(lang.GetPhrase("Report_NoCountry", config.language)) return end
             if tblArgs[3] ~= nil then strInput = string.lower(tblArgs[2]).." "..string.lower(tblArgs[3]) end
 
             api.GetSummary(function(tblData) 
+                local strInput = string.lower(tblArgs[2])
                 local strCountry, strCode = util.MatchCountry(strInput)
                 local tblInfo = util.GetCountryFromSummary(strCode, tblData)
 
-                if tblData == "ERROR" then message:reply("Zbieranie informacji nie powiodło się, proszę ponowić prośbę...") return end
-                if tblInfo == nil then message:reply("Nie znaleziono państwa z podanym kodem/nazwą, proszę ponowić prośbę...") return end
+                if tblData == "ERROR" then message:reply(lang.GetPhrase("Report_Error", config.language)) return end
+                if tblInfo == nil then message:reply(lang.GetPhrase("Report_NotFound", config.language)) return end
 
                 message:reply { 
                     embed = {
                         author = {
-                            name = string.format("Raport - %s ("..os.date("%H:%M")..")", tblInfo["Country"] == nil and "Świat" or tblInfo["Country"]),
+                            name = string.format(lang.GetPhrase("Report_Header", config.language), tblInfo["Country"] == nil and "Świat" or tblInfo["Country"], os.date("%H:%M")),
                             icon_url = "https://i.imgur.com/Wtzvol9.png"
                         },
-                        description = string.format("Raport dot. %s: aktywne przypadki, zgony, wyleczenia.", tblInfo["Country"] == nil and "Świat" or tblInfo["Country"]),
+                        description = string.format(lang.GetPhrase("Report_Description", config.language), tblInfo["Country"] == nil and "Świat" or tblInfo["Country"]),
                         fields = {
                             {
-                                name = "😷 Aktywne Przypadki",
+                                name = "😷 "..lang.GetPhrase("Report_ActiveCases", config.language),
                                 value = string.format("%s (+%s)", util.CommaNumber(tblInfo["TotalConfirmed"]), util.CommaNumber(tblInfo["NewConfirmed"])),
                                 inline = true
                             }, 
                             {
-                                name = "👨‍⚕️ Wyleczenia",
+                                name = "👨‍⚕️ "..lang.GetPhrase("Report_Cured", config.language),
                                 value = string.format("%s (+%s)", util.CommaNumber(tblInfo["TotalRecovered"]), util.CommaNumber(tblInfo["NewRecovered"])),
                                 inline = true
                             },
                             {
-                                name = "💀 Zgony",
+                                name = "💀 "..lang.GetPhrase("Report_Deaths", config.language),
                                 value = string.format("%s (+%s)", util.CommaNumber(tblInfo["TotalDeaths"]), util.CommaNumber(tblInfo["NewDeaths"])),
                                 inline = true
                             },
