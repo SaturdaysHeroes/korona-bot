@@ -1,7 +1,8 @@
 return function(client)
     client:on("messageCreate", function(message) 
         local strContent = message.content
-        local mAuthor = message.author 
+        local uAuthor = message.author 
+        local mMember = message.member
         local cChannel = message.channel    
         local tblArgs = strContent:split(" ")
 
@@ -19,6 +20,11 @@ return function(client)
                             value = lang.GetPhrase("Help_ReportDesc", config.language),
                             inline = false
                         }, 
+                        {
+                            name = config.prefix..lang.GetPhrase("Help_LanguageName", config.language),
+                            value = lang.GetPhrase("Help_LanguageDesc", config.language), 
+                            inline = false
+                        },
                     },
                     color = 3447003,
                     footer = {
@@ -107,6 +113,15 @@ return function(client)
                     }
                 }
             end)
+        end
+
+        if string.lower(tblArgs[1]) == config.prefix.."language" then 
+            if tblArgs[2] == nil then message:reply(lang.GetPhrase("Language_InvalidLanguage", config.language)) return end
+            if lang.IsValid(string.lower(tblArgs[2])) == false then message:reply(lang.GetPhrase("Language_InvalidLanguage", config.language)) return end
+            if not util.IsAdmin(mMember) then message:reply(lang.GetPhrase("Language_NoPermissions")) return end
+
+            config.language = string.lower(tblArgs[2])
+            message:reply(lang.GetPhrase("Language_ChangedLanguage", string.lower(tblArgs[2])))
         end
     end)
 
