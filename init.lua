@@ -14,16 +14,9 @@ _G.languages = {}
 -- Additonal extensions. 
 discordia.extensions()
 
--- Config variables/tables.
-config.prefix = ">"
-config.token = ""
-config.activity = ">help"
-config.apiurl = "https://api.covid19api.com/"
-config.devmode = false
-config.language = "english"
-
 -- Lua modules. 
 require("./modules/util.lua")(client)
+require("./config.lua")(client)
 require("./modules/api.lua")(client)
 require("./modules/language.lua")(client)
 require("./modules/commands.lua")(client)
@@ -31,9 +24,7 @@ require("./modules/commands.lua")(client)
 client:on("ready", function()
     client:setGame(config.activity.." | "..client.guilds:count().." Servers")
     print("----------------------------------------------------------------------------")
+    lang.RegisterLanguage("polish", "pl")
+    lang.RegisterLanguage("english", "en")
 end)
 client:run("Bot "..config.token)
-
--- Languages.
-lang.RegisterLanguage("polish", "pl")
-lang.RegisterLanguage("english", "en")
