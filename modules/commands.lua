@@ -10,6 +10,7 @@ return function(client)
         if gGuild == nil then return end
 
         if string.lower(tblArgs[1]) == config.prefix.."help" then
+            if config.channels[gGuild.id] and cChannel.id ~= config.channels[gGuild.id] then message:reply("Please use the bot commands in an appropriate channel...") return end
             message:reply { 
                 embed = {
                     author = {
@@ -39,6 +40,7 @@ return function(client)
         end
 
         if string.lower(tblArgs[1]) == config.prefix.."routes" then
+            if config.channels[gGuild.id] and cChannel.id ~= config.channels[gGuild.id] then message:reply("Please use the bot commands in an appropriate channel...") return end
             if not config.devmode then return end
 
             message:reply("Fetching...")
@@ -73,6 +75,7 @@ return function(client)
         end
 
         if string.lower(tblArgs[1]) == config.prefix..lang.GetPhrase("Report_Command", lang.GetLanguage(gGuild.id)) then 
+            if config.channels[gGuild.id] and cChannel.id ~= config.channels[gGuild.id] then message:reply("Please use the bot commands in an appropriate channel...") return end
             if tblArgs[2] == nil then message:reply(lang.GetPhrase("Report_NoCountry", lang.GetLanguage(gGuild.id))) return end
             if tblArgs[3] ~= nil then strInput = string.lower(tblArgs[2]).." "..string.lower(tblArgs[3]) end
 
@@ -119,6 +122,7 @@ return function(client)
         end
 
         if string.lower(tblArgs[1]) == config.prefix.."language" then 
+            if config.channels[gGuild.id] and cChannel.id ~= config.channels[gGuild.id] then message:reply("Please use the bot commands in an appropriate channel...") return end
             if tblArgs[2] == nil then message:reply(lang.GetPhrase("Language_InvalidLanguage", lang.GetLanguage(gGuild.id))) return end
             if lang.IsValid(string.lower(tblArgs[2])) == false then message:reply(lang.GetPhrase("Language_InvalidLanguage", lang.GetLanguage(gGuild.id))) return end
             if not util.IsAdmin(mMember) then message:reply(lang.GetPhrase("Language_NoPermissions")) return end
