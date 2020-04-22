@@ -13,5 +13,9 @@ return function(client)
         return _G.languages[strLanguage][strPhrase] or "phrase_not_found"
     end  
 
+    function lang.IsValid(strLanguage)
+        return _G.languages[strLanguage] ~= nil and true or false 
+    end
+
     util.Log("init", "Loaded Timer...")
 end

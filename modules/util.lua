@@ -54,5 +54,9 @@ return function(client)
         return strCountry, strCode
     end
 
+    function util.IsAdmin(mMember)
+        return mMember:hasPermission(0x00000008) or false
+    end
+
     util.Log("init", "Loaded Util...")
 end
