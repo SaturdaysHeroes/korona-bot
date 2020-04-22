@@ -4,3 +4,7 @@ deps/
 *.exe
 
 *.cmd
+
+discordia.log
+
+gateway.json
