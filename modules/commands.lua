@@ -10,7 +10,7 @@ return function(client)
                 embed = {
                     author = {
                         name = "KoronaBot - Help",
-                        icon_url = "https://www.labourstart.org/sars-cov-19.jpg"
+                        icon_url = "https://i.imgur.com/Wtzvol9.png"
                     },
                     description = "Cześć, poniżej znajduje się lista wszystkich komend.",
                     fields = {
