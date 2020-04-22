@@ -10,6 +10,7 @@ _G.util = {}
 _G.api = {}
 _G.lang = {}
 _G.languages = {}
+_G.settings = {}
 
 -- Additonal extensions. 
 discordia.extensions()
@@ -26,5 +27,6 @@ client:on("ready", function()
     print("----------------------------------------------------------------------------")
     lang.RegisterLanguage("polish", "pl")
     lang.RegisterLanguage("english", "en")
+    lang.GetSettings()
 end)
 client:run("Bot "..config.token)

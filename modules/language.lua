@@ -17,5 +17,23 @@ return function(client)
         return _G.languages[strLanguage] ~= nil and true or false 
     end
 
+    function lang.GetSettings()
+        fs.readFile("./data/settings.txt", function(err, data)
+            _G.settings = json.decode(data)
+            
+            util.Log("Languages", "Loaded language settings...")
+        end)
+    end
+
+    function lang.SetSetting(strGuild, strLanguage)
+        _G.settings[strGuild] = strLanguage
+        fs.writeFile("./data/settings.txt", json.encode(_G.settings))
+        util.Log("Languages", "Set language for guild "..strGuild.." to "..strLanguage.."...")
+    end
+
+    function lang.GetLanguage(strGuild)
+        return _G.settings[strGuild] or config.language
+    end
+
     util.Log("init", "Loaded Timer...")
 end
