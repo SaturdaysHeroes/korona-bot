@@ -8,8 +8,13 @@
   "Report_Header": "Raport - %s (%s)",
   "Help_ReportName": "raport [państwo]",
   "Help_Header": "KoronaBot - Help",
+  "Help_LanguageName": "language [english/polish]",
+  "Help_LanguageDesc": "Zmienia język używany przez bota na tym serwerze, wymaga administratora.",
   "Report_Error": "Zbieranie informacji nie powiodło się, proszę ponowić prośbę...",
   "Report_Cured": "Wyleczenia",
   "Report_Description": "Raport dot. %s: aktywne przypadki, zgony, wyleczenia.",
-  "Report_ActiveCases": "Aktywne Przypadki"
+  "Report_ActiveCases": "Aktywne Przypadki",
+  "Language_InvalidLanguage": "Podany kod języka jest niewłaściwy, proszę ponowić próbę...", 
+  "Language_ChangedLanguage": "Pomyślnie zmieniono język na Polski!.",
+  "Language_NoPermissions": "Nie posiadasz wystarczających permisji, aby zmienić język bota."
 }

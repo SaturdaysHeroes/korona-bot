@@ -7,9 +7,14 @@
   "Help_Description": "Hello, you can find the full list of commands below.",
   "Report_Header": "Report - %s (%s)",
   "Help_ReportName": "report [country]",
+  "Help_LanguageName": "language [english/polish]",
+  "Help_LanguageDesc": "Changes the language used by the bot, requires administrator.",
   "Help_Header": "KoronaBot - Help",
   "Report_Error": "Retrieving information has failed, please try again...",
   "Report_Cured": "Cured",
   "Report_Description": "Report re. %s: active cases, cured, deaths.",
-  "Report_ActiveCases": "Active Cases"
+  "Report_ActiveCases": "Active Cases",
+  "Language_InvalidLanguage": "The provided language code is invalid, please try again...", 
+  "Language_ChangedLanguage": "Successfully changed language to English.",
+  "Language_NoPermissions": "You do not have the necessary permissions to change the bot language."
 }
