@@ -5,24 +5,27 @@ return function(client)
         local mMember = message.member
         local cChannel = message.channel    
         local tblArgs = strContent:split(" ")
+        local gGuild = message.channel.guild
+
+        if gGuild == nil then return end
 
         if string.lower(tblArgs[1]) == config.prefix.."help" then
             message:reply { 
                 embed = {
                     author = {
-                        name = lang.GetPhrase("Help_Header", config.language),
+                        name = lang.GetPhrase("Help_Header", lang.GetLanguage(gGuild.id)),
                         icon_url = "https://i.imgur.com/Wtzvol9.png"
                     },
-                    description = lang.GetPhrase("Help_Description", config.language),
+                    description = lang.GetPhrase("Help_Description", lang.GetLanguage(gGuild.id)),
                     fields = {
                         {
-                            name = config.prefix..lang.GetPhrase("Help_ReportName", config.language), 
-                            value = lang.GetPhrase("Help_ReportDesc", config.language),
+                            name = config.prefix..lang.GetPhrase("Help_ReportName", lang.GetLanguage(gGuild.id)), 
+                            value = lang.GetPhrase("Help_ReportDesc", lang.GetLanguage(gGuild.id)),
                             inline = false
                         }, 
                         {
-                            name = config.prefix..lang.GetPhrase("Help_LanguageName", config.language),
-                            value = lang.GetPhrase("Help_LanguageDesc", config.language), 
+                            name = config.prefix..lang.GetPhrase("Help_LanguageName", lang.GetLanguage(gGuild.id)),
+                            value = lang.GetPhrase("Help_LanguageDesc", lang.GetLanguage(gGuild.id)), 
                             inline = false
                         },
                     },
@@ -69,8 +72,8 @@ return function(client)
             end)
         end
 
-        if string.lower(tblArgs[1]) == config.prefix..lang.GetPhrase("Report_Command", config.language) then 
-            if tblArgs[2] == nil then message:reply(lang.GetPhrase("Report_NoCountry", config.language)) return end
+        if string.lower(tblArgs[1]) == config.prefix..lang.GetPhrase("Report_Command", lang.GetLanguage(gGuild.id)) then 
+            if tblArgs[2] == nil then message:reply(lang.GetPhrase("Report_NoCountry", lang.GetLanguage(gGuild.id))) return end
             if tblArgs[3] ~= nil then strInput = string.lower(tblArgs[2]).." "..string.lower(tblArgs[3]) end
 
             api.GetSummary(function(tblData) 
@@ -78,29 +81,29 @@ return function(client)
                 local strCountry, strCode = util.MatchCountry(strInput)
                 local tblInfo = util.GetCountryFromSummary(strCode, tblData)
 
-                if tblData == "ERROR" then message:reply(lang.GetPhrase("Report_Error", config.language)) return end
-                if tblInfo == nil then message:reply(lang.GetPhrase("Report_NotFound", config.language)) return end
+                if tblData == "ERROR" then message:reply(lang.GetPhrase("Report_Error", lang.GetLanguage(gGuild.id))) return end
+                if tblInfo == nil then message:reply(lang.GetPhrase("Report_NotFound", lang.GetLanguage(gGuild.id))) return end
 
                 message:reply { 
                     embed = {
                         author = {
-                            name = string.format(lang.GetPhrase("Report_Header", config.language), tblInfo["Country"] == nil and "Świat" or tblInfo["Country"], os.date("%H:%M")),
+                            name = string.format(lang.GetPhrase("Report_Header", lang.GetLanguage(gGuild.id)), tblInfo["Country"] == nil and "Świat" or tblInfo["Country"], os.date("%H:%M")),
                             icon_url = "https://i.imgur.com/Wtzvol9.png"
                         },
-                        description = string.format(lang.GetPhrase("Report_Description", config.language), tblInfo["Country"] == nil and "Świat" or tblInfo["Country"]),
+                        description = string.format(lang.GetPhrase("Report_Description", lang.GetLanguage(gGuild.id)), tblInfo["Country"] == nil and "Świat" or tblInfo["Country"]),
                         fields = {
                             {
-                                name = "😷 "..lang.GetPhrase("Report_ActiveCases", config.language),
+                                name = "😷 "..lang.GetPhrase("Report_ActiveCases", lang.GetLanguage(gGuild.id)),
                                 value = string.format("%s (+%s)", util.CommaNumber(tblInfo["TotalConfirmed"]), util.CommaNumber(tblInfo["NewConfirmed"])),
                                 inline = true
                             }, 
                             {
-                                name = "👨‍⚕️ "..lang.GetPhrase("Report_Cured", config.language),
+                                name = "👨‍⚕️ "..lang.GetPhrase("Report_Cured", lang.GetLanguage(gGuild.id)),
                                 value = string.format("%s (+%s)", util.CommaNumber(tblInfo["TotalRecovered"]), util.CommaNumber(tblInfo["NewRecovered"])),
                                 inline = true
                             },
                             {
-                                name = "💀 "..lang.GetPhrase("Report_Deaths", config.language),
+                                name = "💀 "..lang.GetPhrase("Report_Deaths", lang.GetLanguage(gGuild.id)),
                                 value = string.format("%s (+%s)", util.CommaNumber(tblInfo["TotalDeaths"]), util.CommaNumber(tblInfo["NewDeaths"])),
                                 inline = true
                             },
@@ -116,11 +119,11 @@ return function(client)
         end
 
         if string.lower(tblArgs[1]) == config.prefix.."language" then 
-            if tblArgs[2] == nil then message:reply(lang.GetPhrase("Language_InvalidLanguage", config.language)) return end
-            if lang.IsValid(string.lower(tblArgs[2])) == false then message:reply(lang.GetPhrase("Language_InvalidLanguage", config.language)) return end
+            if tblArgs[2] == nil then message:reply(lang.GetPhrase("Language_InvalidLanguage", lang.GetLanguage(gGuild.id))) return end
+            if lang.IsValid(string.lower(tblArgs[2])) == false then message:reply(lang.GetPhrase("Language_InvalidLanguage", lang.GetLanguage(gGuild.id))) return end
             if not util.IsAdmin(mMember) then message:reply(lang.GetPhrase("Language_NoPermissions")) return end
 
-            config.language = string.lower(tblArgs[2])
+            lang.SetSetting(gGuild.id, string.lower(tblArgs[2]))
             message:reply(lang.GetPhrase("Language_ChangedLanguage", string.lower(tblArgs[2])))
         end
     end)
