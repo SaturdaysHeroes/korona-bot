@@ -1,12 +1,12 @@
 ### KoronaBot
-In light of the SARS-CoV-2 pandemic I decided to create a discord bot to fetch the latest statistics about the pandemic, without the need to manually search online. The bot has been created using the [COVID-19 API](https://covid19api.com/), I also plan on scraping the latest WHO/Ministry Of Health tweets, if possible. The bot is created for Polish users but can be very easily modified, I plan on hosting this publicly. 
+In light of the SARS-CoV-2 pandemic I decided to create a discord bot to fetch the latest statistics about the pandemic, without the need to manually search online. The bot has been created using the [COVID-19 API](https://covid19api.com/), I also plan on scraping the latest WHO/Ministry Of Health tweets, if possible. The bot was initially created in Polish but now supports full localization, I encourage everyone to translate it! 
 
 ### Requirements
 KoronaBot uses the [Discordia](https://github.com/SinisterRectus/Discordia) package for [Luvit](https://luvit.io) to connect to the Discord API, therefore this will be required. Additionally, you will have to register an application on the [Discord Developer Portal](https://discordapp.com/developers/applications/) and obtain a bot token. In the future access to the Twitter API may also be required, not sure yet. 
 
 ### Media
 ![Usage](https://u.saturdaysheroes.xyz/img/VZUPE1oQnN.png)
-![Usage](https://u.saturdaysheroes.xyz/img/pPJmhf8hGk.png)
+![Usage](https://u.saturdaysheroes.xyz/img/Al4nfM2Vg9.png)
 
 ### Credits
 - SaturdaysHeroes (Code) 
